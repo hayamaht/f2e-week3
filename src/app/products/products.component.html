@@ -1,4 +1,78 @@
-<h2>Products</h2>
-<ul class="products">
-  <li *ngFor="let product of products">{{ product.name }}</li>
-</ul>
+<div class="products__actions">
+  <button mat-raised-button>ADD NEW PRODUCT <mat-icon>add</mat-icon></button>
+</div>
+
+<mat-table class="products__table mat-elevation-z3" [dataSource]="products">
+
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Product</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef>Original</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.price | currency:'USD':'symbol':'1.0-0' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="discount">
+    <mat-header-cell *matHeaderCellDef>Discount</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ (row.price * row.discount) | currency:'USD':'symbol':'1.0-0' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="inventories">
+      <mat-header-cell *matHeaderCellDef>
+        <span class="products__inventoryHeader products__inventoryHeader--size">Size</span>
+        <span class="products__inventoryHeader products__inventoryHeader--color">Color</span>
+        <span class="products__inventoryHeader products__inventoryHeader--amount">Inventory</span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <ul>
+          <li *ngFor="let iv of row.inventories">
+            <span class="product__inventoryCell product__inventoryCell--size">{{ iv.size }}</span>
+            <span class="product__inventoryCell product__inventoryCell--color">{{ iv.color }}</span>
+            <span class="product__inventoryCell product__inventoryCell--amount">{{ iv.amount }}</span>
+          </li>
+        </ul>
+      </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-stroked-button class="products__actionButton"
+              [class.unpublished]="row.status === 0"
+              [class.published]="row.status === 1">
+        {{ (row.status === 0 ? 'unpublished' : 'published') | uppercase }}
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns" class="products__tableHeader"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
