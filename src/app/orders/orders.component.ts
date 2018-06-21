@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../order.service';
 import { Order } from '../order';
+import { MatTableDataSource } from '@angular/material';
+import { ListComponent } from '../list-component';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent extends ListComponent<Order> implements OnInit {
 
-  orders: Order[];
-
-  constructor(
-    private orderService: OrderService
-  ) { }
-
-  ngOnInit() {
-    this.getOrders();
+  get orders(): MatTableDataSource<Order> {
+    return this.dataSource;
   }
 
-  getOrders() {
-    this.orderService
-      .getAll()
-      .subscribe(orders => this.orders = orders);
+  constructor(service: OrderService) {
+    super(
+      [ 'customer', 'products', 'total', 'addedAt', 'checkoutedAt', 'address', 'status' ],
+      service
+    );
+  }
+
+  ngOnInit() {
+    this.getData();
   }
 }

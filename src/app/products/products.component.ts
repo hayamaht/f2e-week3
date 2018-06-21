@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
+import { ListComponent } from '../list-component';
 
 @Component({
   selector: 'app-products',
@@ -10,41 +10,21 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
   styleUrls: ['./products.component.scss'],
 
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent extends ListComponent<Product> implements OnInit {
 
-  products = new MatTableDataSource<Product>();
-  selection = new SelectionModel<Product>(true, []);
-  displayedColumns = [ 'select', 'name', 'price', 'discount', 'inventories', 'status' ];
+  get products(): MatTableDataSource<Product> {
+    return this.dataSource;
+  }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  constructor(
-    private productService: ProductService
-  ) { }
+  constructor(service: ProductService) {
+    super(
+      [ 'select', 'name', 'price', 'discount', 'inventories', 'status' ],
+      service
+    );
+  }
 
   ngOnInit() {
-    this.getProducts();
-  }
-
-  isAllSelected(): boolean {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.products.data.length;
-    return numSelected === numRows;
-  }
-
-  masterToggle() {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.products.data.forEach(row => this.selection.select(row));
-  }
-
-  getProducts() {
-    this.productService
-      .getAll()
-      .subscribe(products => {
-        this.products.data = products;
-        this.products.paginator = this.paginator;
-      });
+    this.getData();
   }
 
 }

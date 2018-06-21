@@ -1,5 +1,102 @@
-<h2>Ordera</h2>
+<div class="orders__actions">
 
-<ul>
-  <li *ngFor="let order of orders">{{ order.customer }}</li>
-</ul>
+</div>
+
+<mat-table class="orders__table mat-elevation-z3" [dataSource]="orders">
+
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="customer">
+    <mat-header-cell *matHeaderCellDef>Customer</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.customer }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="products">
+    <mat-header-cell *matHeaderCellDef>Product List</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <ul>
+        <li class="orders__product-elm" *ngFor="let p of row.products">
+          <div class="product-elm__name">{{ p.name }}</div>
+          <div>
+            <span class="product-elm__price">{{ p.price | currency:'USD':'symbol':'1.0-0' }}</span>
+            <span class="product-elm__amount">{{ p.amount }}</span>
+          </div>
+        </li>
+      </ul>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="total">
+    <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.total | currency:'USD':'symbol':'1.0-0' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="addedAt">
+    <mat-header-cell *matHeaderCellDef>Add to Cart</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.addedAt | date:'yyyy/MM/dd HH:mm' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="checkoutedAt">
+    <mat-header-cell *matHeaderCellDef>Check-out</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.checkoutedAt | date:'yyyy/MM/dd HH:mm' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.phone }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.email }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.address }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-stroked-button class="orders__actionButton">
+        {{ row.status | titlecase }}
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns" class="orders__tableHeader"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
