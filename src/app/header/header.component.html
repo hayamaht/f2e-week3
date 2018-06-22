@@ -1,0 +1,22 @@
+<header class="header">
+  <h1 class="sitename">Shoptime</h1>
+
+  <mat-nav-list class="sitenav">
+    <a mat-list-item routerLink="dashboard" class="sitenav__item">HOME</a>
+    <a mat-list-item routerLink="orders" class="sitenav__item">ORDERS</a>
+    <a mat-list-item routerLink="products" class="sitenav__item">PRODUCTS</a>
+  </mat-nav-list>
+
+  <div class="usermenu">
+    <button mat-button [matMenuTriggerFor]="userMenu" class="user__button">
+      <mat-icon>account_circle</mat-icon>
+      ADMIN
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item>Setting</button>
+      <button mat-menu-item>Help</button>
+      <hr>
+      <button mat-menu-item>Logout</button>
+    </mat-menu>
+  </div>
+</header>
