@@ -19,11 +19,11 @@ export abstract class JsonApiService<T> {
     };
   }
 
-  getAll(): Observable< T[] > {
+  getAll(): Observable<T[]> {
     return this.http
       .get<T[]>(this.url)
       .pipe(
-        tap(_ => console.log('fetched collection'),
+        tap(_ => console.log('fetched collection')),
         catchError(this.handleError('getAll', []))
       );
   }

@@ -133,7 +133,13 @@ export class InMemoryDataService implements InMemoryDbService {
       status: ProductStatus.Draft,
     }];
 
-    return { orders, products };
+    const orderStatistics = [{
+      totalRevenue: 54540,
+      totalCost: 22454,
+      netIncome: 77283
+    }];
+
+    return { orders, products, order_statistics: orderStatistics };
   }
 
 }
