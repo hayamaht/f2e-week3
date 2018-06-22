@@ -1,7 +1,8 @@
 import { ProductStatus } from './product-status.enum';
 import { Inventory } from './inventory';
+import { Indentifiable } from './indentifiable';
 
-export class Product {
+export class Product implements Indentifiable {
   id: number;
   images: string[];
   name: string;

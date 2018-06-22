@@ -1,10 +1,10 @@
 <header class="header">
-  <h1 class="sitename">Shoptime</h1>
+  <h1 class="sitename">
+    <a routerLink="dashboard">Shoptime</a>
+  </h1>
 
   <mat-nav-list class="sitenav">
-    <a mat-list-item routerLink="dashboard" class="sitenav__item">HOME</a>
-    <a mat-list-item routerLink="orders" class="sitenav__item">ORDERS</a>
-    <a mat-list-item routerLink="products" class="sitenav__item">PRODUCTS</a>
+    <a mat-list-item *ngFor="let m of menuItems" [routerLink]="m" class="sitenav__item" [class.active]="isActive(m)">{{ m | uppercase }}</a>
   </mat-nav-list>
 
   <div class="usermenu">

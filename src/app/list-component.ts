@@ -2,8 +2,9 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ViewChild } from '@angular/core';
 import { JsonApiService } from './json-api.service';
+import { Indentifiable } from './indentifiable';
 
-export abstract class ListComponent<T> {
+export abstract class ListComponent<T extends Indentifiable> {
 
   dataSource = new MatTableDataSource<T>();
   selection = new SelectionModel<T>(true, []);

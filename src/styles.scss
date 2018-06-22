@@ -1,6 +1,9 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'normalize.css';
+@import 'scss/vars';
 
 body {
   background-color: #f2f2f2;
+  font-family: $font;
 }
+
