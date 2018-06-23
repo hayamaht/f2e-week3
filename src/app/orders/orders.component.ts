@@ -3,6 +3,7 @@ import { OrderService } from '../order.service';
 import { Order } from '../order';
 import { MatTableDataSource } from '@angular/material';
 import { ListComponent } from '../list-component';
+import { OrderStatus } from '../order-status.enum';
 
 @Component({
   selector: 'app-orders',
@@ -15,9 +16,16 @@ export class OrdersComponent extends ListComponent<Order> implements OnInit {
     return this.dataSource;
   }
 
+  orderStatuses = [ 
+    OrderStatus.Unpaid,
+    OrderStatus.Paid,
+    OrderStatus.Shipping,
+    OrderStatus.Done
+  ];
+
   constructor(service: OrderService) {
     super(
-      [ 'customer', 'products', 'total', 'addedAt', 'checkoutedAt', 'address', 'status' ],
+      [ 'select', 'customer', 'products', 'total', 'addedAt', 'checkoutedAt', 'address', 'status' ],
       service
     );
   }

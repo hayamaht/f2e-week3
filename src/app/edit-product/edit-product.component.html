@@ -1,0 +1,72 @@
+<div mat-dialog-title class="editProduct__title">
+  <h1 class="title__text">
+    ADD NEW PRODUCT
+  </h1>
+  <button mat-icon-button class="editProduct__button--close" (click)="cancel()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="editProduct__content">
+  <div class="product__images">
+    <div class="image__uploader">
+      <i class="fas fa-cloud-upload-alt fa-3x"></i>
+      <div class="placeholder">
+        Drag an image or click here to upload...
+      </div>
+    </div>
+    <ul class="images__grid">
+      <img src="https://fakeimg.pl/125/">
+      <img src="https://fakeimg.pl/125/">
+      <img src="https://fakeimg.pl/125/">
+      <img src="https://fakeimg.pl/125/">
+      <img src="https://fakeimg.pl/125/">
+    </ul>
+  </div>
+  <div class="product__form">
+    <mat-form-field>
+      <input matInput placeholder="Product Name" cdkFocusInitial>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Product Description"></textarea>
+    </mat-form-field>
+
+    <div class="product__price">
+      <h4>Price</h4>
+
+      <mat-form-field>
+        <input type="number" matInput placeholder="Original" class="product__price--origianl">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" matInput placeholder="Discount" class="product__price--discount">
+      </mat-form-field>
+    </div>
+
+    <div class="product__specs">
+      <h4>Specification</h4>
+      <div class="spec__elm" *ngFor="let s of product.inventories">
+        <mat-form-field>
+          <mat-select placeholder="Size" [value]="s.size">
+            <mat-option value="L">L</mat-option>
+            <mat-option value="M">M</mat-option>
+            <mat-option value="S">S</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="Color" [value]="s.color">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="number" matInput placeholder="Inventory" [value]="s.amount" min="1">
+        </mat-form-field>
+      </div>
+      <button mat-flat-button class="spec__button--add" (click)="addSpec()">ADD NEW SPECIFICATION <mat-icon>add</mat-icon></button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="editProduct__actions">
+  <button mat-button (click)="saveDraft()" class="editProduct__button--draft">SAVE DRAFT</button>
+  <button mat-flat-button (click)="publish()" class="editProduct__button--publish">PUBLISH</button>
+</div>

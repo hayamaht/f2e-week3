@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { Indentifiable } from './indentifiable';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' });
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
-export abstract class JsonApiService<T> {
+export abstract class JsonApiService<T extends Indentifiable> {
 
   constructor(
     protected http: HttpClient,
@@ -23,12 +24,12 @@ export abstract class JsonApiService<T> {
     return this.http
       .get<T[]>(this.url)
       .pipe(
-        tap(_ => console.log('fetched collection')),
+        tap(_ => console.log('fetched collection: ' + this.url)),
         catchError(this.handleError('getAll', []))
       );
   }
 
-  find(id: number); : Observable < T > {
+  find(id: number): Observable<T> {
     const url = `${this.url}/${id}`;
     return this.http
       .get<T>(url)
@@ -38,7 +39,7 @@ export abstract class JsonApiService<T> {
       );
   }
 
-  create(obj: T); : Observable < T > {
+  create(obj: T): Observable <T> {
     return this.http
       .post<T>(this.url, obj, httpOptions)
       .pipe(
@@ -47,7 +48,7 @@ export abstract class JsonApiService<T> {
       );
   }
 
-  update(obj: T); : Observable < any > {
+  update(obj: T): Observable<any> {
     return this.http
       .put(this.url, obj, httpOptions)
       .pipe(
@@ -56,7 +57,7 @@ export abstract class JsonApiService<T> {
       );
   }
 
-  destory(obj: T); : Observable < T > {
+  destory(obj: T): Observable<T> {
     const url = `${this.url}/${obj.id}`;
 
     return this.http

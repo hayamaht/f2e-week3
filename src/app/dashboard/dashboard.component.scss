@@ -1,0 +1,136 @@
+@import 'vars';
+
+.dashboard__header {
+  display: flex;
+  height: 29px;
+  margin-bottom: 20px;
+}
+
+.dashboard__title {
+  font-size: $titleFontSize;
+  line-height: 29px;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.dashboard__actions {
+  position: relative;
+  top: -20px;
+}
+
+.dashboard__info {
+  margin-top: 20px;
+  display: flex;
+  
+  .mat-card {
+    flex: 1;
+    padding: 30px;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
+
+  .mat-card-header {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.transactions__item {
+  padding-bottom: 23px;
+
+  &:first-child {
+    margin-top: 23px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 23px;
+    border-bottom: 1px solid #EBEBEB;
+  }
+}
+
+.mat-list .mat-list-item .mat-list-item-content {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.list-item {
+  flex: 1;
+}
+
+.list-item__percent {
+  font-size: 16px;
+  text-align: right;
+
+  &.gt {
+    color: $color4;
+  }
+
+  &.eq {
+    color: $grey4;
+  }
+
+  &.lt {
+    color: $color1;
+  }
+}
+
+.list-item__current {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  // margin-right: 20px;
+}
+
+.latestorders__item {
+  height: 100px;
+  padding-bottom: 8px;
+
+  &:first-child {
+    margin-top: 30px;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #EBEBEB;
+    margin-bottom: 8px;
+  }
+}
+
+.list-item-img {
+  flex: 0 0 100px;
+  margin-right: 30px;
+
+  & > img {
+    display: block;
+  }
+}
+
+.product__title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.product__price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.list-item__total {
+  text-align: right;
+}
+
+.product__addedAt {
+  margin-bottom: 8px;
+}
+
+.product__addedAt,
+.product__customer {
+  color: #9B9B9B;
+}

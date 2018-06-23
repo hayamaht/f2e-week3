@@ -1,0 +1,97 @@
+@import 'vars';
+.products__actions {
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.products__selector {
+  margin-left: 24px;
+  position: relative;
+  top: 12px;
+}
+
+.products__actionButton {
+  border-radius: 5px;
+
+  &.published {
+    background-color: $color4;
+  }
+
+  &.unpublished {
+    background-color: #9B9B9B;
+  }
+}
+
+.products__inventoryHeader {
+  flex: 1;
+}
+
+.products__button--add {
+  background-color: black;
+  color: white;
+}
+
+.inventories {
+  margin: 33px 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.inventories__info {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 66%;
+}
+
+.inventories__elm {
+  display: flex;
+  align-content: space-between;
+
+  &:not(:last-child) {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid white;
+  }
+}
+
+.inventories__info-elm {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.inventories__cell--size,
+.inventories__cell--color {
+  flex: 1;
+  
+}
+
+.inventories__cell--amount {
+  flex: 1;
+}
+
+.mat-column-select {
+  flex: 0 0 30px;
+}
+
+.mat-column-name {
+  flex: 0 0 200px;
+}
+
+.mat-column-status {
+  flex: 0 0 150px;
+}
+
+.mat-column-price,
+.mat-column-discount {
+  flex: 0 0 120px;
+}
+
+.mat-column-inventories {
+  display: flex;
+  align-content: space-between;
+  margin-right: 24px;
+}

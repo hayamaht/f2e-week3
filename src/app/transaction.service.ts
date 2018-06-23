@@ -9,6 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class TransactionService extends JsonApiService<Transaction> {
 
   constructor(http: HttpClient) {
-    super(http, 'api/transations');
+    super(http, 'api/transactions');
   }
 }

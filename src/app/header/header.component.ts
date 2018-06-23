@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+
+const MenuItems = [ 'home', 'orders', 'products' ];
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  constructor() { }
+  menuItems = MenuItems;  
+  current = 'home';
 
-  ngOnInit() {
+  constructor(
+    private location: Location
+  ) { }
+
+  isActive(item: string): boolean {
+    let c = this.location.path().substr(1);
+    c = c === 'dashboard' ? 'home' : c;
+    return item === c;
   }
 
 }
