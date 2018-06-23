@@ -1,17 +1,19 @@
-<mat-form-field>
-  <input matInput [matDatepicker]="picker1" placeholder="Start date">
-  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker #picker1></mat-datepicker>
-</mat-form-field>
-
-<mat-form-field>
-  <input matInput [matDatepicker]="picker2" placeholder="End date">
-  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-  <mat-datepicker #picker2></mat-datepicker>
-</mat-form-field>
-
-<mat-form-field>
-  <mat-select>
-    <mat-option *ngFor="let d of durationModes" [value]="d">{{ d }}</mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="duration-picker">
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker1">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker2">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let d of durationModes" [value]="d">{{ d }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

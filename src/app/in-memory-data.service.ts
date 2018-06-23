@@ -47,29 +47,41 @@ export class InMemoryDataService implements InMemoryDbService {
       name: 'AAAA',
       price: 1200,
       discount: 0.9,
-      inventories: [
-        { size: Size.Large, color: 'Gary', amount: 10 },
-        { size: Size.Large, color: 'Black', amount: 10 },
-        { size: Size.Middle, color: 'Gary', amount: 10 },
-        { size: Size.Middle, color: 'Black', amount: 10 },
-        { size: Size.Small, color: 'Gary', amount: 10 },
-        { size: Size.Small, color: 'Black', amount: 10 },
-      ],
-      status: ProductStatus.Draft,
+      inventories: {
+        L: [
+          { size: Size.Large, color: 'Gary', amount: 10 },
+          { size: Size.Large, color: 'Black', amount: 10 },
+        ],
+        M: [
+          { size: Size.Middle, color: 'Gary', amount: 10 },
+          { size: Size.Middle, color: 'Black', amount: 10 },
+        ],
+        S: [
+          { size: Size.Small, color: 'Gary', amount: 10 },
+          { size: Size.Small, color: 'Black', amount: 10 },
+        ],
+      },
+      status: ProductStatus.Published,
     }, {
       id: 4,
       images: ['p1.jpg'],
       name: 'AAAA',
       price: 1200,
       discount: 0.9,
-      inventories: [
-        { size: Size.Large, color: 'Gary', amount: 10 },
-        { size: Size.Large, color: 'Black', amount: 10 },
-        { size: Size.Middle, color: 'Gary', amount: 10 },
-        { size: Size.Middle, color: 'Black', amount: 10 },
-        { size: Size.Small, color: 'Gary', amount: 10 },
-        { size: Size.Small, color: 'Black', amount: 10 },
-      ],
+      inventories: {
+        L: [
+          { size: Size.Large, color: 'Gary', amount: 15 },
+          { size: Size.Large, color: 'Black', amount: 10 },
+        ],
+        M: [
+          { size: Size.Middle, color: 'Gary', amount: 15 },
+          { size: Size.Middle, color: 'Black', amount: 10 },
+        ],
+        S: [
+          { size: Size.Small, color: 'Gary', amount: 15 },
+          { size: Size.Small, color: 'Black', amount: 10 },
+        ],
+      },
       status: ProductStatus.Draft,
     }, {
       id: 5,
@@ -77,14 +89,20 @@ export class InMemoryDataService implements InMemoryDbService {
       name: 'AAAA',
       price: 1200,
       discount: 0.9,
-      inventories: [
-        { size: Size.Large, color: 'Gary', amount: 10 },
-        { size: Size.Large, color: 'Black', amount: 10 },
-        { size: Size.Middle, color: 'Gary', amount: 10 },
-        { size: Size.Middle, color: 'Black', amount: 10 },
-        { size: Size.Small, color: 'Gary', amount: 10 },
-        { size: Size.Small, color: 'Black', amount: 10 },
-      ],
+      inventories: {
+        L: [
+          { size: Size.Large, color: 'Gary', amount: 15 },
+          { size: Size.Large, color: 'Black', amount: 10 },
+        ],
+        M: [
+          { size: Size.Middle, color: 'Gary', amount: 15 },
+          { size: Size.Middle, color: 'Black', amount: 10 },
+        ],
+        S: [
+          { size: Size.Small, color: 'Gary', amount: 15 },
+          { size: Size.Small, color: 'Black', amount: 10 },
+        ],
+      },
       status: ProductStatus.Draft,
     }, {
       id: 6,
@@ -92,14 +110,20 @@ export class InMemoryDataService implements InMemoryDbService {
       name: 'AAAA',
       price: 1200,
       discount: 0.9,
-      inventories: [
-        { size: Size.Large, color: 'Gary', amount: 10 },
-        { size: Size.Large, color: 'Black', amount: 10 },
-        { size: Size.Middle, color: 'Gary', amount: 10 },
-        { size: Size.Middle, color: 'Black', amount: 10 },
-        { size: Size.Small, color: 'Gary', amount: 10 },
-        { size: Size.Small, color: 'Black', amount: 10 },
-      ],
+      inventories: {
+        L: [
+          { size: Size.Large, color: 'Gary', amount: 15 },
+          { size: Size.Large, color: 'Black', amount: 10 },
+        ],
+        M: [
+          { size: Size.Middle, color: 'Gary', amount: 15 },
+          { size: Size.Middle, color: 'Black', amount: 10 },
+        ],
+        S: [
+          { size: Size.Small, color: 'Gary', amount: 15 },
+          { size: Size.Small, color: 'Black', amount: 10 },
+        ],
+      },
       status: ProductStatus.Draft,
     }, {
       id: 7,
@@ -107,14 +131,20 @@ export class InMemoryDataService implements InMemoryDbService {
       name: 'AAAA',
       price: 1200,
       discount: 0.9,
-      inventories: [
-        { size: Size.Large, color: 'Gary', amount: 10 },
-        { size: Size.Large, color: 'Black', amount: 10 },
-        { size: Size.Middle, color: 'Gary', amount: 10 },
-        { size: Size.Middle, color: 'Black', amount: 10 },
-        { size: Size.Small, color: 'Gary', amount: 10 },
-        { size: Size.Small, color: 'Black', amount: 10 },
-      ],
+      inventories: {
+        L: [
+          { size: Size.Large, color: 'Gary', amount: 15 },
+          { size: Size.Large, color: 'Black', amount: 10 },
+        ],
+        M: [
+          { size: Size.Middle, color: 'Gary', amount: 15 },
+          { size: Size.Middle, color: 'Black', amount: 10 },
+        ],
+        S: [
+          { size: Size.Small, color: 'Gary', amount: 15 },
+          { size: Size.Small, color: 'Black', amount: 10 },
+        ],
+      },
       status: ProductStatus.Draft,
     }, {
       id: 8,
@@ -122,14 +152,20 @@ export class InMemoryDataService implements InMemoryDbService {
       name: 'AAAA',
       price: 1200,
       discount: 0.9,
-      inventories: [
-        { size: Size.Large, color: 'Gary', amount: 10 },
-        { size: Size.Large, color: 'Black', amount: 10 },
-        { size: Size.Middle, color: 'Gary', amount: 10 },
-        { size: Size.Middle, color: 'Black', amount: 10 },
-        { size: Size.Small, color: 'Gary', amount: 10 },
-        { size: Size.Small, color: 'Black', amount: 10 },
-      ],
+      inventories: {
+        L: [
+          { size: Size.Large, color: 'Gary', amount: 15 },
+          { size: Size.Large, color: 'Black', amount: 10 },
+        ],
+        M: [
+          { size: Size.Middle, color: 'Gary', amount: 15 },
+          { size: Size.Middle, color: 'Black', amount: 10 },
+        ],
+        S: [
+          { size: Size.Small, color: 'Gary', amount: 15 },
+          { size: Size.Small, color: 'Black', amount: 10 },
+        ],
+      },
       status: ProductStatus.Draft,
     }];
 

@@ -1,0 +1,21 @@
+@import 'vars';
+
+.dashboard__header {
+  display: flex;
+  height: 29px;
+  margin-bottom: 20px;
+}
+
+.dashboard__title {
+  font-size: $titleFontSize;
+  line-height: 29px;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.dashboard__actions {
+  position: relative;
+  top: -20px;
+}
+

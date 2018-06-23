@@ -1,16 +1,39 @@
 <div class="products__actions">
-  <button mat-raised-button>ADD NEW PRODUCT <mat-icon>add</mat-icon></button>
+  <mat-checkbox class="products__selector"
+    (change)="$event ? masterToggle() : null"
+    [checked]="selection.hasValue() && isAllSelected()"
+    [indeterminate]="selection.hasValue() && !isAllSelected()">
+  </mat-checkbox>
+
+  <button mat-icon-button [matMenuTriggerFor]="selectionMenu">
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #selectionMenu="matMenu">
+    <button mat-menu-item (click)="masterToggle()" [disabled]="isAllSelected()">Select All</button>
+    <button mat-menu-item (click)="masterToggle()" [disabled]="!isAllSelected()">Unselect All</button>
+    <button mat-menu-item>Published</button>
+    <button mat-menu-item>Unpublished</button>
+  </mat-menu>
+
+  <button mat-icon-button class="products__button--settings" 
+    [matMenuTriggerFor]="statusMenu"
+    [disabled]="!selection.hasValue()">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #statusMenu="matMenu">
+    <button mat-menu-item>Set as Published</button>
+    <button mat-menu-item>Set as Unpublished</button>
+  </mat-menu>
+
+  <span class="spacer"></span>
+  
+  <button mat-raised-button class="products__button--add">ADD NEW PRODUCT <mat-icon>add</mat-icon></button>
 </div>
 
 <mat-table class="products__table mat-elevation-z3" [dataSource]="products">
 
   <ng-container matColumnDef="select">
-    <mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()">
-      </mat-checkbox>
-    </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let row">
       <mat-checkbox (click)="$event.stopPropagation()"
                     (change)="$event ? selection.toggle(row) : null"
@@ -48,11 +71,15 @@
         <span class="products__inventoryHeader products__inventoryHeader--amount">Inventory</span>
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <ul>
-          <li *ngFor="let iv of row.inventories">
-            <span class="product__inventoryCell product__inventoryCell--size">{{ iv.size }}</span>
-            <span class="product__inventoryCell product__inventoryCell--color">{{ iv.color }}</span>
-            <span class="product__inventoryCell product__inventoryCell--amount">{{ iv.amount }}</span>
+        <ul class="inventories">
+          <li *ngFor="let size of row.inventories | keys" class="inventories__elm">
+            <span class="inventories__cell inventories__cell--size">{{ size }}</span>
+            <ul class="inventories__info">
+              <li *ngFor="let iv of row.inventories[size]" class="inventories__info-elm">
+                  <span class="inventories__cell inventories__cell--color">{{ iv.color }}</span>
+                  <span class="inventories__cell inventories__cell--amount">{{ iv.amount }}</span>
+              </li>
+            </ul>
           </li>
         </ul>
       </mat-cell>
@@ -61,9 +88,10 @@
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button mat-stroked-button class="products__actionButton"
+      <button mat-flat-button class="products__actionButton"
               [class.unpublished]="row.status === 0"
-              [class.published]="row.status === 1">
+              [class.published]="row.status === 1"
+              [matMenuTriggerFor]="statusMenu">
         {{ (row.status === 0 ? 'unpublished' : 'published') | uppercase }}
         <mat-icon>arrow_drop_down</mat-icon>
       </button>

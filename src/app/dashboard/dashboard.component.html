@@ -1,41 +1,43 @@
-<div class="dashboard__header">
-  <h2 class="dashboard__title">OVERVIEW</h2>
-  <div class="dashboard__actions">
-    <app-duration-picker></app-duration-picker>
+<div class="dashboard">
+  <div class="dashboard__header">
+    <h2 class="dashboard__title">OVERVIEW</h2>
+    <div class="dashboard__actions">
+      <app-duration-picker></app-duration-picker>
+    </div>
   </div>
-</div>
-
-<app-statistics></app-statistics>
-
-<div class="dashboard__info">
-  <mat-card class="transactions-card">
-    <mat-card-header class="transactions-card__title">Transaction Website</mat-card-header>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item class="transactions-card__list-item" *ngFor="let t of transactions">
-          <span class="list-item__image"></span>
-          <h4 class="list-item__title">{{ t.site }}</h4>
-          <span>{{ t.current }}</span>
-          <span>{{ ((t.current - t.last) / t.current * 100) | number:'1.0-0' }}</span>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="latestorders-card">
-    <mat-card-header class="latestorders-card__title">Latest Orders</mat-card-header>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item class="latestorders-card__list-item" *ngFor="let order of latestOrders">
-          <h3>{{ order.products[0].name }}</h3>
-          <div>{{ order.addedAt | date:'yyyy/MM/dd HH:mm' }}</div>
-          <div>{{ order.customer }}</div>
-          <div>
-            <div>Total</div>
-            <div>{{ order.total | number:'1.0-0' }}</div>
-          </div>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
+  
+  <app-statistics></app-statistics>
+  
+  <div class="dashboard__info">
+    <mat-card class="transactions-card">
+      <mat-card-header class="transactions-card__title">Transaction Website</mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item class="transactions-card__list-item" *ngFor="let t of transactions">
+            <span class="list-item__image"></span>
+            <h4 class="list-item__title">{{ t.site }}</h4>
+            <span>{{ t.current }}</span>
+            <span>{{ ((t.current - t.last) / t.current * 100) | number:'1.0-0' }}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card class="latestorders-card">
+      <mat-card-header class="latestorders-card__title">Latest Orders</mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item class="latestorders-card__list-item" *ngFor="let order of latestOrders">
+            <h3>{{ order.products[0].name }}</h3>
+            <div>{{ order.addedAt | date:'yyyy/MM/dd HH:mm' }}</div>
+            <div>{{ order.customer }}</div>
+            <div>
+              <div>Total</div>
+              <div>{{ order.total | number:'1.0-0' }}</div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
