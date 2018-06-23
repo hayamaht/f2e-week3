@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderStatisticsService } from '../order-statistics.service';
 import { OrderService } from '../order.service';
 import { TransactionService } from '../transaction.service';
-import { OrderStatistics } from '../order-statistics';
 import { Transaction } from '../transaction';
 import { Order } from '../order';
 
@@ -31,9 +29,9 @@ export class DashboardComponent implements OnInit {
       .getLatest()
       .subscribe(orders => this.latestOrders = orders);
 
-    // this.transactionService
-    //   .getAll()
-    //   .subscribe(data => this.transactions = data);
+    this.transactionService
+      .getAll()
+      .subscribe(data => this.transactions = data);
   }
 
 }

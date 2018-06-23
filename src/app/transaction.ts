@@ -5,4 +5,5 @@ export class Transaction implements Indentifiable {
   site: string;
   current: number;
   last: number;
+  d: number;
 }

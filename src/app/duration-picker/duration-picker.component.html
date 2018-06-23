@@ -1,19 +1,21 @@
 <div class="duration-picker">
   <mat-form-field>
-    <input matInput [matDatepicker]="picker1">
+    <input matInput [matDatepicker]="picker1" [formControl]="fromDate">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
   
+  <mat-icon>arrow_right</mat-icon>
+  
   <mat-form-field>
-    <input matInput [matDatepicker]="picker2">
+    <input matInput [matDatepicker]="picker2" [formControl]="toDate">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
   
   <mat-form-field>
-    <mat-select>
-      <mat-option *ngFor="let d of durationModes" [value]="d">{{ d }}</mat-option>
+    <mat-select value="weekly">
+      <mat-option *ngFor="let d of durationModes" [value]="d">{{ d | titlecase }}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>

@@ -175,7 +175,14 @@ export class InMemoryDataService implements InMemoryDbService {
       netIncome: 77283
     }];
 
-    return { orders, products, order_statistics: orderStatistics };
+    const transactions = [
+      { site: 'facebook.com', current: 53242, last: 45836, d: 1 },
+      { site: 'google.com', current: 9803, last: 12345, d: -1 },
+      { site: 'shopify.com', current: 8656, last: 8656, d: 0},
+      { site: 'wordpress.com', current: 7632, last: 5355, d: 1 },
+    ];
+
+    return { orders, products, order_statistics: orderStatistics, transactions };
   }
 
 }

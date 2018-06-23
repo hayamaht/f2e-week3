@@ -19,3 +19,71 @@
   top: -20px;
 }
 
+.dashboard__info {
+  margin-top: 20px;
+  display: flex;
+  
+  .mat-card {
+    flex: 1;
+    padding: 30px;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
+
+  .mat-card-header {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.transactions__item {
+  padding-bottom: 23px;
+
+  &:first-child {
+    margin-top: 23px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 23px;
+    border-bottom: 1px solid #EBEBEB;
+  }
+}
+
+.mat-list .mat-list-item .mat-list-item-content {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.list-item {
+  flex: 1;
+}
+
+.list-item__percent {
+  font-size: 16px;
+  text-align: right;
+
+  &.gt {
+    color: $color4;
+  }
+
+  &.eq {
+    color: $grey4;
+  }
+
+  &.lt {
+    color: $color1;
+  }
+}
+
+.list-item__current {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  // margin-right: 20px;
+}

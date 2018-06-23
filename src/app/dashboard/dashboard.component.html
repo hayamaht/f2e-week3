@@ -13,11 +13,19 @@
       <mat-card-header class="transactions-card__title">Transaction Website</mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item class="transactions-card__list-item" *ngFor="let t of transactions">
-            <span class="list-item__image"></span>
-            <h4 class="list-item__title">{{ t.site }}</h4>
-            <span>{{ t.current }}</span>
-            <span>{{ ((t.current - t.last) / t.current * 100) | number:'1.0-0' }}</span>
+          <mat-list-item class="transactions__item" *ngFor="let t of transactions">
+            <span class="list-item list-item__image"></span>
+            <h4 class="list-item list-item__title">{{ t.site }}</h4>
+            <span class="list-item list-item__current">{{ t.current | number:'1.0-0' }}</span>
+            <span class="list-item list-item__percent" 
+              [class.gt]="t.d > 0"
+              [class.eq]="t.d === 0"
+              [class.lt]="0 > t.d">
+              <span *ngIf="t.d > 0" ><i class="fas fa-arrow-up"></i></span>
+              <span *ngIf="t.d === 0" ><i class="fas fa-minus"></i></span>
+              <span *ngIf="0 > t.d" ><i class="fas fa-arrow-down"></i></span>
+              {{ ((t.current - t.last) / t.current * 100) | number:'1.0-0' }}%
+            </span>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
