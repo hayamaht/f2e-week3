@@ -8,6 +8,6 @@ export class Product implements Indentifiable {
   name: string;
   price: number;
   discount: number;
-  inventories: Inventory[];
+  inventories: any;
   status: ProductStatus;
 }

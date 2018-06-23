@@ -27,7 +27,12 @@
 
   <span class="spacer"></span>
   
-  <button mat-raised-button class="products__button--add">ADD NEW PRODUCT <mat-icon>add</mat-icon></button>
+  <button mat-raised-button 
+    class="products__button--add"
+    (click)="createProduct()">
+    ADD NEW PRODUCT 
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
 
 <mat-table class="products__table mat-elevation-z3" [dataSource]="products">
