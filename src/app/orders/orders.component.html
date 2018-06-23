@@ -1,0 +1,132 @@
+<div class="orders__actions">
+  <mat-checkbox class="orders__selector"
+    (change)="$event ? masterToggle() : null"
+    [checked]="selection.hasValue() && isAllSelected()"
+    [indeterminate]="selection.hasValue() && !isAllSelected()">
+  </mat-checkbox>
+
+  <button mat-icon-button [matMenuTriggerFor]="selectionMenu">
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #selectionMenu="matMenu">
+    <button mat-menu-item (click)="masterToggle()" [disabled]="isAllSelected()">Select All</button>
+    <button mat-menu-item (click)="masterToggle()" [disabled]="!isAllSelected()">Unselect All</button>
+    <button mat-menu-item>Published</button>
+    <button mat-menu-item>Unpublished</button>
+  </mat-menu>
+
+  <button mat-icon-button class="orders__button--settings" 
+    [matMenuTriggerFor]="statusMenu"
+    [disabled]="!selection.hasValue()">
+    <mat-icon>settings</mat-icon>
+  </button>
+  
+  <div class="spacer"></div>
+  
+  <mat-form-field>
+    <mat-select placeholder="EDIT SECTION"  multiple>
+      <mat-option *ngFor="let col of displayedColumns" [value]="col">{{col | titlecase}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<mat-table class="orders__table mat-elevation-z3" [dataSource]="orders">
+
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="customer">
+    <mat-header-cell *matHeaderCellDef>Customer</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.customer }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="products">
+    <mat-header-cell *matHeaderCellDef>Product List</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <ul class="orders__product-list">
+        <li class="orders__product-elm" *ngFor="let p of row.products">
+          <div class="product-elm__name">{{ p.name }}</div>
+          <div class="product-elm__info">
+            <span class="product-elm__price">{{ p.price | currency:'USD':'symbol':'1.0-0' }}</span>
+            <span class="product-elm__amount">{{ p.amount }}</span>
+          </div>
+        </li>
+      </ul>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="total">
+    <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.total | currency:'USD':'symbol':'1.0-0' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="addedAt">
+    <mat-header-cell *matHeaderCellDef>Add to Cart</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.addedAt | date:'yyyy/MM/dd HH:mm' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="checkoutedAt">
+    <mat-header-cell *matHeaderCellDef>Check-out</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.checkoutedAt | date:'yyyy/MM/dd HH:mm' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.phone }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.email }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.address }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-flat-button 
+        [class]="'orders__actionButton--' + row.status"
+        [ngClass]="{'orders__actionButton': true}"
+        [matMenuTriggerFor]="statusMenu">
+        {{ row.status | titlecase }}
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns" class="orders__tableHeader"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+<mat-menu #statusMenu="matMenu">
+  <button mat-menu-item *ngFor="let s of orderStatuses">{{ s | titlecase }}</button>
+</mat-menu>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>

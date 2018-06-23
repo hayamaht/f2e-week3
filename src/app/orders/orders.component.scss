@@ -1,0 +1,90 @@
+@import 'vars';
+
+.orders__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.orders__selector {
+  margin-left: 24px;
+  position: relative;
+  top: 24px;
+}
+
+.orders__product-list {
+  margin: 17px 30px 17px 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.orders__product-elm {
+  margin-bottom: 8px;
+  &:not(:last-child) {
+    border-bottom: 2px solid white;
+  }
+  
+}
+
+.product-elm__name {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.product-elm__info {
+  display: flex;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.product-elm__price {
+  color: #9B9B9B;
+  font-size: 14px;
+  display: block;
+  flex: 1;
+}
+
+.product-elm__amount {
+  font-size: 14px;
+}
+
+.orders__actionButton {
+  border-radius: 5px;
+}
+
+.orders__actionButton--unpaid {
+  background-color: #9B9B9B;
+}
+
+.orders__actionButton--paid {
+  background-color: $color4;
+}
+
+.orders__actionButton--shipped {
+  background-color: $color2;
+}
+
+.orders__actionButton--done {
+  background-color: $color3;
+}
+
+.mat-column-select {
+  flex: 0 0 30px;
+}
+
+.mat-column-total {
+  flex: 0 0 70px;
+}
+
+.mat-column-addedAt {
+  flex: 0 0 100px;
+}
+
+.mat-column-checkoutedAt {
+  flex: 0 0 100px;
+}
+
+.mat-column-status {
+  flex: 0 0 120px;
+}

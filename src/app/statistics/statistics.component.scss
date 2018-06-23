@@ -1,0 +1,65 @@
+@import 'vars';
+
+$gap: 20px;
+
+.statistics__summary {
+  width: 100%;
+  display: flex;
+  margin-bottom: 18px;
+
+  .mat-card {
+
+    .header__text {
+      margin-left: 8px;
+    }
+
+    flex: 1;
+
+    &:not(:last-child):not(:first-child) {
+      margin: 0 $gap/2;
+    }
+
+    &:first-child {
+      margin-right: $gap/2;
+    }
+
+    &:last-child {
+      margin-left: $gap/2;
+    }
+  }
+}
+
+.mat-card {
+  padding: 30px;
+}
+
+.order-stats__card {
+  .mat-card-header {
+    font-weight: 500;
+    justify-content: center;
+    line-height: 32px;
+  }
+  .order-stats__value {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 16px;
+  }
+}
+
+.order-stats__value--total-revenue {
+  color: $color4;
+}
+
+.order-stats__value--total-cost {
+  color: $color1;
+}
+
+.order-stats__value--net-income {
+  color: $color3;
+}
+
+.charts__title {
+  font-size: $titleFontSize;
+  font-weight: bold;
+}

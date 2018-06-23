@@ -1,0 +1,39 @@
+<section class="statistics">
+  <div class="statistics__summary">
+    <mat-card class="order-stats__card">
+      <mat-card-header>
+        <i class="fas fa-hand-holding-usd fa-2x"></i>
+        <div class="header__text">TOTAL REVENUE</div>
+      </mat-card-header>
+      <mat-card-content class="order-stats__value order-stats__value--total-revenue">{{ orderStatistics.totalRevenue | number:'1.0-0' }}</mat-card-content>
+    </mat-card>
+
+    <mat-card class="order-stats__card">
+      <mat-card-header>
+        <i class="fas fa-boxes fa-2x"></i>
+        <div class="header__text">TOTAL COST</div>
+      </mat-card-header>
+      <mat-card-content class="order-stats__value order-stats__value--total-cost">{{ orderStatistics.totalCost | number:'1.0-0' }}</mat-card-content>
+    </mat-card>
+
+    <mat-card class="order-stats__card">
+      <mat-card-header>
+        <i class="fas fa-money-bill fa-2x"></i>
+        <div class="header__text">NET INCOME</div>
+      </mat-card-header>
+      <mat-card-content class="order-stats__value order-stats__value--net-income">{{ orderStatistics.netIncome | number:'1.0-0' }}</mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="statistics__charts">
+    <mat-card>
+      <mat-card-header class="charts__title">Activity</mat-card-header>
+      <mat-card-content>
+        <div *ngIf="chart">
+          <canvas id="activity_chart" class="chart__activity">{{ chart }}</canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</section>
