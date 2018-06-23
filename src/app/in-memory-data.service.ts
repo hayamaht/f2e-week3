@@ -40,6 +40,34 @@ export class InMemoryDataService implements InMemoryDbService {
         { name: 'Aew casdasd', price: 900, amount: 1 },
         { name: 'AFasdasd', price: 900, amount: 1 },
       ]
+    }, {
+      id: 3,
+      customer: 'Ceepefd afd',
+      total: 1800,
+      addedAt: new Date('2018/6/6'),
+      checkoutedAt: new Date('2018/6/19'),
+      phone: '12353',
+      email: 'alex@test.com',
+      address: 'sdasdasdd',
+      status: OrderStatus.Paid,
+      products: [
+        { name: 'Aew casdasd', price: 900, amount: 1 },
+        { name: 'AFasdasd', price: 900, amount: 1 },
+      ]
+    }, {
+      id: 4,
+      customer: 'Ceepefd afd',
+      total: 1800,
+      addedAt: new Date('2018/6/6'),
+      checkoutedAt: new Date('2018/6/19'),
+      phone: '12353',
+      email: 'alex@test.com',
+      address: 'sdasdasdd',
+      status: OrderStatus.Paid,
+      products: [
+        { name: 'Aew casdasd', price: 900, amount: 1 },
+        { name: 'AFasdasd', price: 900, amount: 1 },
+      ]
     }];
     const products = [{
       id: 3,

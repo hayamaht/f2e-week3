@@ -35,13 +35,18 @@
       <mat-card-header class="latestorders-card__title">Latest Orders</mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item class="latestorders-card__list-item" *ngFor="let order of latestOrders">
-            <h3>{{ order.products[0].name }}</h3>
-            <div>{{ order.addedAt | date:'yyyy/MM/dd HH:mm' }}</div>
-            <div>{{ order.customer }}</div>
-            <div>
+          <mat-list-item class="latestorders__item" *ngFor="let order of latestOrders">
+            <div class="list-item list-item-img">
+                <img src="https://fakeimg.pl/100/" >
+            </div>
+            <div class="list-item list-item__info">
+              <h3 class="product__title">{{ order.products[0].name }}</h3>
+              <div class="product__addedAt"><i class="fas fa-clock fa-fw"></i> {{ order.addedAt | date:'yyyy/MM/dd HH:mm' }}</div>
+              <div class="product__customer"><i class="fas fa-male fa-fw"></i> {{ order.customer }}</div>
+            </div>
+            <div class="list-item list-item__total">
               <div>Total</div>
-              <div>{{ order.total | number:'1.0-0' }}</div>
+              <div class="product__price">{{ order.total | number:'1.0-0' }}</div>
             </div>
           </mat-list-item>
         </mat-list>
